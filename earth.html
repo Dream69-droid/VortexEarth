@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Vortex Earth 3D</title>
+  <script src="https://cesium.com/downloads/cesiumjs/releases/1.114/Build/Cesium/Cesium.js"></script>
+  <link href="https://cesium.com/downloads/cesiumjs/releases/1.114/Build/Cesium/Widgets/widgets.css" rel="stylesheet" />
+  <style>
+    html, body, #cesiumContainer {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: black;
+    }
+  </style>
+</head>
+<body>
+  <div id="cesiumContainer"></div>
+  <script>
+    Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJiNGUyYjVhYS0zN2MwLTQ5ZDktYjljMy05ZTA3Mzk0YWM4ZTEiLCJpZCI6MzA0NDk1LCJpYXQiOjE3NDc3NTM0OTJ9.voGRyJFevl4QcsdwFQvYg-czzqvJ-2OOYUhRS_sSGtk';
+
+    const viewer = new Cesium.Viewer('cesiumContainer', {
+      terrainProvider: Cesium.createWorldTerrain(),
+      imageryProvider: new Cesium.IonImageryProvider({ assetId: 2 }),
+      baseLayerPicker: false,
+      geocoder: false,
+      homeButton: false,
+      sceneModePicker: false,
+      navigationHelpButton: false,
+      animation: false,
+      timeline: false,
+      fullscreenButton: false
+    });
+
+    viewer.scene.primitives.add(Cesium.createOsmBuildings());
+    viewer.scene.skyAtmosphere.show = true;
+    viewer.scene.globe.enableLighting = true;
+    viewer.cesiumWidget.creditContainer.style.display = "none";
+  </script>
+</body>
+</html>
